@@ -30,7 +30,7 @@ export const FORM_CONFIG = Object.freeze({
 
 export const APP_CONFIG = Object.freeze({
   courseTitle: 'オペレーティングシステム',
-  quizTitle: '第1回〜第6回 復習クイズ',
+  quizTitle: '第1回〜第7回 復習クイズ',
   institution: '玉川大学 工学部',
   storageKey: 'os2026_quiz_state',
   // 合格ライン（総評の閾値の一つ）

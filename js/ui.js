@@ -77,8 +77,8 @@ export function showStart({ profile, hasSubmitted, submission, onStart }) {
             <div class="text-xs text-slate-500 dark:text-slate-400">問題数</div>
           </li>
           <li class="rounded-xl bg-slate-50 px-3 py-3 dark:bg-slate-700/40">
-            <div class="font-serif text-2xl font-bold text-brand-600 dark:text-brand-300">6</div>
-            <div class="text-xs text-slate-500 dark:text-slate-400">対象回（第1〜6回）</div>
+            <div class="font-serif text-2xl font-bold text-brand-600 dark:text-brand-300">7</div>
+            <div class="text-xs text-slate-500 dark:text-slate-400">対象回（第1〜7回）</div>
           </li>
           <li class="rounded-xl bg-slate-50 px-3 py-3 dark:bg-slate-700/40">
             <div class="font-serif text-2xl font-bold text-brand-600 dark:text-brand-300">即時</div>
