@@ -36,7 +36,7 @@ export const APP_CONFIG = Object.freeze({
   // 合格ライン（総評の閾値の一つ）
   passRatio: 0.6,
   // 所要時間の目安計算に使う1問あたりの想定秒数（読解＋解答＋解説確認）
-  estSecondsPerQuestion: 25,
+  estSecondsPerQuestion: 45,
   // 学籍番号の桁数めやす（数字のみ・参考表示用）
   studentIdPattern: /^[0-9]{6,10}$/,
 });
