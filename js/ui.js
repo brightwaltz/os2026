@@ -39,6 +39,12 @@ function fmtDuration(sec) {
   return m > 0 ? `${m}分${s}秒` : `${s}秒`;
 }
 
+/** 全問の所要時間の目安（分）。1問あたり想定秒数から算出し、5分単位に丸める。 */
+function estimatedMinutes() {
+  const totalMin = (TOTAL_QUESTIONS * APP_CONFIG.estSecondsPerQuestion) / 60;
+  return Math.max(5, Math.round(totalMin / 5) * 5);
+}
+
 function letter(i) {
   return String.fromCharCode(65 + i); // A, B, C, ...
 }
@@ -71,6 +77,11 @@ export function showStart({ profile, hasSubmitted, submission, onStart }) {
         <h2 class="font-serif text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl">${esc(APP_CONFIG.courseTitle)}</h2>
         <p class="mt-1 text-lg text-slate-600 dark:text-slate-300">${esc(APP_CONFIG.quizTitle)}</p>
 
+        <p class="mt-3 inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-600 dark:bg-slate-700/50 dark:text-slate-300">
+          <svg class="h-4 w-4 text-brand-500 dark:text-brand-300" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM11 6a1 1 0 10-2 0v4a1 1 0 00.293.707l2.5 2.5a1 1 0 001.414-1.414L11 9.586V6z" clip-rule="evenodd"/></svg>
+          所要時間の目安：約${estimatedMinutes()}分
+        </p>
+
         <ul class="mt-5 grid grid-cols-3 gap-3 text-center">
           <li class="rounded-xl bg-slate-50 px-3 py-3 dark:bg-slate-700/40">
             <div class="font-serif text-2xl font-bold text-brand-600 dark:text-brand-300">${TOTAL_QUESTIONS}</div>
@@ -100,7 +111,7 @@ export function showStart({ profile, hasSubmitted, submission, onStart }) {
             <input id="f-sid" name="studentId" type="text" inputmode="numeric" pattern="[0-9]*" required
               value="${esc(p.studentId)}"
               class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-slate-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 dark:border-slate-600 dark:bg-slate-900/40 dark:text-white"
-              placeholder="例) 263360019" />
+              placeholder="123456789" />
             <p data-err="studentId" class="mt-1 hidden text-xs text-rose-500"></p>
           </div>
           <div>
