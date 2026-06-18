@@ -96,10 +96,10 @@ export const QUIZ = Object.freeze([
     lecture: 1,
     type: 'multi',
     q: '次のうち、一般にOS（オペレーティングシステム）の名称として挙げられるものをすべて選べ。',
-    choices: ['Windows', 'iOS', 'Microsoft Word', 'Android'],
+    choices: ['Windows', 'iOS', 'Webブラウザ', 'Android'],
     answer: [0, 1, 3],
     explanation:
-      'Windows・iOS・AndroidはいずれもOSです。Microsoft Wordはアプリケーションソフトウェアであり、OSではありません。',
+      'Windows・iOS・AndroidはいずれもOSです。Webブラウザはアプリケーション（応用）ソフトウェアであり、OSではありません。',
     source: '第1回 OSの例',
   },
   {
@@ -586,7 +586,7 @@ export const QUIZ = Object.freeze([
     choices: ['RAM', 'ROM', 'CPU', 'HDD'],
     answer: [1],
     explanation:
-      'ROM（Read Only Memory）は読み出し専用メモリ、RAM（Random Access Memory）は読み書き可能なメモリです。メモリには1バイト単位の通し番号（アドレス／番地）が付いています。',
+      'ROMは読み出し専用メモリ、RAMは読み書き可能なメモリです。メモリには1バイト単位の通し番号（アドレス／番地）が付いています。',
     source: '第6回 メモリの仕組み',
   },
   {
@@ -758,10 +758,10 @@ export const QUIZ = Object.freeze([
     lecture: 7,
     type: 'single',
     q: '優先度スケジューリングで起こりうる、優先度の低いプロセスがいつまでも実行されず後回しにされ続ける状態を何というか。',
-    choices: ['デッドロック', '飢餓状態（スタベーション）', 'コンテクストスイッチ', 'プリエンプション'],
+    choices: ['デッドロック', '飢餓状態', 'コンテクストスイッチ', 'プリエンプション'],
     answer: [1],
     explanation:
-      '優先度スケジューリングでは、優先度の高いプロセスが次々と来ると、優先度の低いプロセスがいつまでも後回しになる「飢餓状態（starvation）」が発生しうるという問題があります。',
+      '優先度スケジューリングでは、優先度の高いプロセスが次々と来ると、優先度の低いプロセスがいつまでも後回しになる「飢餓状態」が発生しうるという問題があります。',
     source: '第7回 優先度スケジューリング',
   },
   {
