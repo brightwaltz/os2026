@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>オペレーティングシステム 復習クイズ｜玉川大学 工学部</title>
+    <meta
+      name="description"
+      content="オペレーティングシステム 第1回〜第6回の復習クイズ。各問即時フィードバックで理解を確認できます。"
+    />
+    <meta name="robots" content="noindex" />
+
+    <!-- ダークモードの初期適用（FOUC回避：CDN読込前に class を確定） -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('os2026_theme');
+          var dark = saved
+            ? saved === 'dark'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- フォント（知的でモダンな印象：見出し=Serif, 本文=Sans） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS（Play CDN：ゼロビルド運用） -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#eef2ff',
+                100: '#e0e7ff',
+                200: '#c7d2fe',
+                300: '#a5b4fc',
+                400: '#818cf8',
+                500: '#6366f1',
+                600: '#4f46e5',
+                700: '#4338ca',
+                800: '#3730a3',
+                900: '#312e81',
+              },
+              accent: {
+                400: '#fbbf24',
+                500: '#f59e0b',
+                600: '#d97706',
+              },
+            },
+            fontFamily: {
+              sans: ['"Noto Sans JP"', 'system-ui', 'sans-serif'],
+              serif: ['"Noto Serif JP"', 'serif'],
+            },
+            boxShadow: {
+              card: '0 10px 30px -12px rgba(2, 6, 23, 0.18)',
+            },
+            keyframes: {
+              'fade-in': {
+                '0%': { opacity: '0', transform: 'translateY(8px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+            },
+            animation: {
+              'fade-in': 'fade-in 0.4s ease-out both',
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="./css/custom.css" />
+  </head>
+
+  <body
+    class="min-h-screen bg-slate-50 font-sans text-slate-900 antialiased transition-colors duration-300 dark:bg-slate-900 dark:text-slate-100"
+  >
+    <!-- 背景の装飾グラデーション -->
+    <div
+      aria-hidden="true"
+      class="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+    >
+      <div
+        class="absolute -top-40 left-1/2 h-96 w-[42rem] -translate-x-1/2 rounded-full bg-gradient-to-br from-brand-300/30 to-accent-300/20 blur-3xl dark:from-brand-700/20 dark:to-accent-700/10"
+      ></div>
+    </div>
+
+    <header
+      class="sticky top-0 z-20 border-b border-slate-200/70 bg-slate-50/80 backdrop-blur dark:border-slate-700/60 dark:bg-slate-900/70"
+    >
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
+        <div class="flex items-center gap-2.5">
+          <span
+            class="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-600 font-serif text-lg font-bold text-white shadow-md shadow-brand-600/30"
+            >OS</span
+          >
+          <div class="leading-tight">
+            <p class="font-serif text-sm font-bold text-slate-900 dark:text-white">
+              オペレーティングシステム
+            </p>
+            <p class="text-xs text-slate-500 dark:text-slate-400">復習クイズ・第1〜6回</p>
+          </div>
+        </div>
+
+        <button
+          id="theme-toggle"
+          type="button"
+          aria-label="ダークモードに切り替え"
+          aria-pressed="false"
+          class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-600 transition hover:border-brand-400 hover:text-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500/40 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:text-brand-300"
+        >
+          <!-- moon（ライト時に表示：ダークへ） -->
+          <svg
+            data-icon="moon"
+            class="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            />
+          </svg>
+          <!-- sun（ダーク時に表示：ライトへ） -->
+          <svg
+            data-icon="sun"
+            class="hidden h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="app" class="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
+      <!-- 画面は main.js が描画 -->
+      <div class="mx-auto max-w-2xl text-center text-slate-400">読み込み中…</div>
+    </main>
+
+    <footer class="mx-auto max-w-5xl px-4 pb-10 pt-4 text-center sm:px-6">
+      <p class="text-xs text-slate-400 dark:text-slate-500">
+        玉川大学 工学部 ・ オペレーティングシステム 復習クイズ
+      </p>
+    </footer>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

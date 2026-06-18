@@ -1,0 +1,46 @@
+/* custom.css
+ * Tailwind（Play CDN）で表現しづらい微調整のみを記述する最小スタイル。
+ * 配色やレイアウトは原則 Tailwind ユーティリティで行う。
+ */
+
+/* スムーズな配色トランジション */
+:root {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+/* details の既定マーカーを隠す（結果画面の誤答アコーディオン） */
+summary::-webkit-details-marker {
+  display: none;
+}
+summary {
+  list-style: none;
+}
+
+/* フォーカスリングの可視性（キーボード操作の配慮） */
+:focus-visible {
+  outline: none;
+}
+
+/* 選択肢ボタンの押下感 */
+.choice:active:not(:disabled) {
+  transform: scale(0.995);
+}
+
+/* prefers-reduced-motion 配慮：アニメーションを抑制 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 数値の等幅表示（スコア・タイマー） */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
